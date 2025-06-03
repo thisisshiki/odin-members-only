@@ -6,7 +6,7 @@ const sessionConfig = require("./config/sessionConfig");
 require("dotenv").config();
 
 const routes = require("./routes/index");
-const errorHandler = require("./middleware/errorHandler");
+const errorHandler = require("./middlewares/errorHandler");
 
 const app = express();
 

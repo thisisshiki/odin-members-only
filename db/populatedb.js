@@ -29,10 +29,11 @@ CREATE TABLE IF NOT EXISTS messages (
 );
 
 -- 插入一些用户
-INSERT INTO users (first_name, last_name, email, password_hash, is_member)
+INSERT INTO users (first_name, last_name, email, password_hash, is_member, admin)
 VALUES
-  ('Alice', 'Smith', 'alice@example.com', 'hashedpassword1', TRUE),
-  ('Bob', 'Jones', 'bob@example.com', 'hashedpassword2', FALSE);
+  ('Alice', 'Smith', 'alice@example.com', 'hashedpassword1', TRUE, TRUE),
+  ('Charlie', 'Brown', 'charlie@example.com', 'hashedpassword3', TRUE, FALSE),
+  ('Bob', 'Jones', 'bob@example.com', 'hashedpassword2', FALSE, FALSE);
 
 -- 插入一些消息
 INSERT INTO messages (title, content, user_id)
