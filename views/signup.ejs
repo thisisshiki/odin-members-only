@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up</title>
+</head>
+<body>
+  <h1>Sign Up</h1>
+  <% if (errors.length) { %>
+    <ul>
+      <% errors.forEach(function(e) { %>
+        <li style="color:red;"><%= e.msg %></li>
+      <% }); %>
+    </ul>
+  <% } %>
+  <form action="/signup" method="POST">
+    <input name="first_name" placeholder="First Name" value="<%= form.first_name || '' %>"><br>
+    <input name="last_name" placeholder="Last Name" value="<%= form.last_name || '' %>"><br>
+    <input name="email" type="email" placeholder="Email" value="<%= form.email || '' %>"><br>
+    <input name="password" type="password" placeholder="Password"><br>
+    <input name="confirmPassword" type="password" placeholder="Confirm Password"><br>
+    <button type="submit">Sign Up</button>
+  </form>
+  <a href="/">Back</a>
+</body>
+</html>

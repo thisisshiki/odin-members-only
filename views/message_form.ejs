@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>New Message</title>
+</head>
+<body>
+  <h1>Create a New Message</h1>
+  <% if (errors.length) { %>
+    <ul>
+      <% errors.forEach(function(e) { %>
+        <li style="color:red;"><%= e.msg %></li>
+      <% }); %>
+    </ul>
+  <% } %>
+  <form action="/new-message" method="POST">
+    <input name="title" placeholder="Title" value="<%= form.title || '' %>"><br>
+    <textarea name="content" placeholder="Content"><%= form.content || '' %></textarea><br>
+    <button type="submit">Post</button>
+  </form>
+  <a href="/">Back</a>
+</body>
+</html>

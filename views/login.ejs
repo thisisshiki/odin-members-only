@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+</head>
+<body>
+  <h1>Login</h1>
+  <% if (errors.length) { %>
+    <ul>
+      <% errors.forEach(function(e) { %>
+        <li style="color:red;"><%= e.msg %></li>
+      <% }); %>
+    </ul>
+  <% } %>
+  <form action="/login" method="POST">
+    <input name="email" type="email" placeholder="Email"><br>
+    <input name="password" type="password" placeholder="Password"><br>
+    <button type="submit">Login</button>
+  </form>
+  <a href="/">Back</a>
+</body>
+</html>

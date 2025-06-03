@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Join the Club</title>
+</head>
+<body>
+  <h1>Enter Club Passcode</h1>
+  <% if (errors.length) { %>
+    <ul>
+      <% errors.forEach(function(e) { %>
+        <li style="color:red;"><%= e.msg %></li>
+      <% }); %>
+    </ul>
+  <% } %>
+  <form action="/join" method="POST">
+    <input name="passcode" type="password" placeholder="Club Passcode"><br>
+    <button type="submit">Join</button>
+  </form>
+  <a href="/">Back</a>
+</body>
+</html>

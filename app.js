@@ -1,46 +1,53 @@
 const express = require("express");
+const path = require("path");
 const createError = require("http-errors");
 const passport = require("passport");
 const sessionConfig = require("./config/sessionConfig");
-const path = require("node:path");
+require("dotenv").config();
+
 const routes = require("./routes/index");
-const errorHandler = require("./middlewares/error").errorHandler;
+const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 
-app.use(express.static("public"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-
-app.set("view engine", "ejs");
+// 设置视图引擎为 EJS
 app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
+// 中间件
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-// AUTHENTICATION/SESSION
-
+// Session 和 Passport
 app.use(sessionConfig());
+app.use(passport.initialize());
 app.use(passport.session());
 
+// 当前用户信息传递到模板
 app.use((req, res, next) => {
-    console.log(req.user);
-    next();
-})
+  res.locals.currentUser = req.user;
+  next();
+});
 
+// 加载 passport 策略
 require("./config/passportConfig");
 
-// ROUTES
+// 路由
+app.use("/", routes);
 
-app.use(routes);
-
-// ERRORS
-
+// 404 处理
 app.use((req, res, next) => {
-    next(createError(404));
-})
+  next(createError(404));
+});
 
+// 全局错误处理
 app.use(errorHandler);
 
-// SERVER
+// 启动服务器
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
 
-app.listen(3000, () => console.log("Server running."));
+module.exports = app;

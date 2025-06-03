@@ -15,7 +15,8 @@ CREATE TABLE IF NOT EXISTS users (
   last_name TEXT NOT NULL,
   email TEXT UNIQUE NOT NULL,
   password_hash TEXT NOT NULL,
-  is_member BOOLEAN DEFAULT FALSE
+  is_member BOOLEAN DEFAULT FALSE,
+  admin BOOLEAN DEFAULT FALSE
 );
 
 -- 创建 messages 表

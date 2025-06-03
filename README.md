@@ -2,6 +2,9 @@ Project detail: https://www.theodinproject.com/lessons/node-path-nodejs-members-
 
 Description: Website, JavaScript, HTML, Express, Postgres SQL, Passport Authentication
 
-How to use: Create a psql db named grocery in the terminal
+How to use: Create a psql db named clubhouse in the terminal
 
-$ npm init -y $ npm install express ejs nodemon dotenv pg passport $ node db/populatedb.js $ npm start
+1. 配置 `.env`
+2. `npm install`
+3. `node db/populatedb.js`
+4. `npm start`

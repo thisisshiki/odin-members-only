@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clubhouse</title>
+</head>
+<body>
+  <h1>Clubhouse Messages</h1>
+  <% if (currentUser) { %>
+    <p>Welcome, <%= currentUser.first_name %>!</p>
+    <a href="/logout">Logout</a>
+    <a href="/new-message">Create a new message</a>
+    <% if (!currentUser.is_member) { %>
+      <a href="/join">Join the club</a>
+    <% } %>
+  <% } else { %>
+    <a href="/login">Login</a>
+    <a href="/signup">Sign up</a>
+  <% } %>
+  <hr>
+  <ul>
+    <% messages.forEach(function(msg) { %>
+      <li>
+        <strong><%= msg.title %></strong>
+        <p><%= msg.content %></p>
+        <% if (currentUser && currentUser.is_member) { %>
+          <small>By <%= msg.first_name %> <%= msg.last_name %> at <%= msg.created_at.toLocaleString() %></small>
+        <% } %>
+        <% if (currentUser && currentUser.admin) { %>
+          <form action="/message/<%= msg.id %>/delete" method="POST" style="display:inline;">
+            <button type="submit">Delete</button>
+          </form>
+        <% } %>
+      </li>
+      <hr>
+    <% }); %>
+  </ul>
+</body>
+</html>
