@@ -4,4 +4,4 @@ Description: Website, JavaScript, HTML, Express, Postgres SQL, Passport Authenti
 
 How to use: Create a psql db named grocery in the terminal
 
-$ npm init -y $ npm install express nodemon dotenv pg passport $ node db/populatedb.js $ npm start
+$ npm init -y $ npm install express ejs nodemon dotenv pg passport $ node db/populatedb.js $ npm start
